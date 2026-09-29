@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Friendship Day ❤️</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia, serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e8,#ffe9f3,#fff7d6);
+overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+/* Floating Hearts */
+
+.heart{
+position:absolute;
+font-size:25px;
+animation:float 8s linear infinite;
+opacity:.8;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{opacity:1;}
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* Envelope */
+
+.envelope{
+width:320px;
+height:210px;
+background:#ff80ab;
+position:relative;
+cursor:pointer;
+border-radius:8px;
+box-shadow:0 15px 40px rgba(0,0,0,.2);
+transition:.6s;
+}
+
+.envelope:hover{
+transform:scale(1.05);
+}
+
+.flap{
+position:absolute;
+width:0;
+height:0;
+border-left:160px solid transparent;
+border-right:160px solid transparent;
+border-top:110px solid #ec407a;
+top:0;
+transform-origin:top;
+transition:1s;
+}
+
+.messageOnEnvelope{
+position:absolute;
+width:100%;
+text-align:center;
+top:120px;
+font-size:24px;
+font-weight:bold;
+color:white;
+}
+
+.letter{
+display:none;
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:82%;
+height:85%;
+background:white;
+border-radius:15px;
+padding:35px;
+overflow:auto;
+box-shadow:0 0 40px rgba(0,0,0,.25);
+animation:fade 2s;
+}
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translate(-50%,-45%);
+}
+to{
+opacity:1;
+transform:translate(-50%,-50%);
+}
+}
+
+h1{
+text-align:center;
+color:#d81b60;
+margin-bottom:20px;
+}
+
+p{
+font-size:19px;
+line-height:1.8;
+color:#444;
+white-space:pre-line;
+}
+
+.signature{
+text-align:right;
+margin-top:30px;
+font-size:22px;
+color:#e91e63;
+font-weight:bold;
+}
+
+button{
+margin-top:25px;
+padding:12px 30px;
+border:none;
+border-radius:30px;
+background:#ff4081;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+.final{
+display:none;
+position:absolute;
+text-align:center;
+font-size:40px;
+color:#d81b60;
+font-weight:bold;
+animation:fade 2s;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="gift">
+
+<div class="envelope" onclick="openLetter()">
+
+<div class="flap" id="flap"></div>
+
+<div class="messageOnEnvelope">
+💌<br>
+To Sindhu ❤️
+</div>
+
+</div>
+
+</div>
+
+<div class="letter" id="letter">
+
+<h1>🌸 Happy Friendship Day 🌸</h1>
+
+<p id="text"></p>
+
+<center>
+
+<button onclick="finish()">
+❤️ Forever Friends ❤️
+</button>
+
+</center>
+
+</div>
+
+<div class="final" id="final">
+🎉 Happy Friendship Day Sindhu! 🎉
+
+<br><br>
+
+❤️ You'll always have a special place in my heart. ❤️
+
+<br><br>
+
+- Chandana 🌷
+</div>
+
+<script>
+
+const msg=`Dear Sindhu ❤️,
+
+If you're reading this,
+you've just opened a little surprise made especially for you.
+
+I just wanted to tell you...
+
+Thank you for being such an amazing friend.
+
+Thank you for every laugh,
+every conversation,
+every memory,
+and every moment we've shared.
+
+Friends like you are truly rare,
+and I feel so lucky to have you in my life.
+
+No matter where life takes us,
+I hope our friendship always stays just as beautiful.
+
+Whenever you need someone,
+remember that I'll always be cheering for you.
+
+✨ You are kind.
+✨ You are special.
+✨ You are appreciated.
+
+May your life be filled with happiness,
+success,
+good health,
+and endless smiles.
+
+Thank you for being YOU.
+
+Happy Friendship Day!
+
+With Lots of Love,
+
+❤️ Chandana ❤️`;
+
+let i=0;
+
+function type(){
+if(i<msg.length){
+document.getElementById("text").innerHTML+=msg.charAt(i);
+i++;
+setTimeout(type,30);
+}
+}
+
+function openLetter(){
+
+document.getElementById("gift").style.display="none";
+
+document.getElementById("letter").style.display="block";
+
+type();
+
+}
+
+function finish(){
+
+document.getElementById("letter").style.display="none";
+
+document.getElementById("final").style.display="block";
+
+confetti();
+
+}
+
+function createHeart(){
+
+let h=document.createElement("div");
+
+h.className="heart";
+
+h.innerHTML="💖";
+
+h.style.left=Math.random()*100+"vw";
+
+h.style.fontSize=(20+Math.random()*25)+"px";
+
+h.style.animationDuration=(5+Math.random()*5)+"s";
+
+document.body.appendChild(h);
+
+setTimeout(()=>h.remove(),9000);
+
+}
+
+setInterval(createHeart,300);
+
+function confetti(){
+
+for(let i=0;i<150;i++){
+
+let c=document.createElement("div");
+
+c.innerHTML=["🎉","💖","✨","🌸"][Math.floor(Math.random()*4)];
+
+c.style.position="absolute";
+
+c.style.left=Math.random()*100+"vw";
+
+c.style.top="-20px";
+
+c.style.fontSize=(15+Math.random()*25)+"px";
+
+c.style.transition="4s linear";
+
+document.body.appendChild(c);
+
+setTimeout(()=>{
+
+c.style.top="110vh";
+
+},50);
+
+setTimeout(()=>c.remove(),5000);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
